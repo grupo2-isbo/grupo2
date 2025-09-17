@@ -58,6 +58,7 @@ main {
 }
 
 .card img {
+    margin: 0;
     object-fit: fill;
     max-width: 270px;
     max-height: 300px;
