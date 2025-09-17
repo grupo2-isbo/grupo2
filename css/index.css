@@ -53,9 +53,18 @@ main {
     background-color: #262524;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 300px;
+    width: 270px;
 
 }
+
+.card img {
+    object-fit: fill;
+    max-width: 270px;
+    max-height: 300px;
+    border-radius: 8px;
+}
+
+
 
 section {
     margin-bottom: 30px;
