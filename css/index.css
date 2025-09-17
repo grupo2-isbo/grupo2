@@ -1,21 +1,60 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #333;
+    color: #fff;
     line-height: 1.6;
 }
 
 /* Encabezado */
 header {
-    background-color: #0066cc;
+    background-color: #262524;
     color: white;
     text-align: center;
     padding: 20px;
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover{
+    color: darkgray;
+}
 main {
     padding: 20px;
+}
+
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.card {
+    background-color: #262524;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 300px;
+
 }
 
 section {
@@ -52,8 +91,18 @@ img {
 }
 
 footer {
-    background-color: #333;
+    background-color: #262524;
     color: white;
     text-align: center;
     padding: 15px;
+}
+
+
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: darkgrey;
 }
