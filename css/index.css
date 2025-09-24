@@ -21,6 +21,10 @@ nav {
     padding: 1rem 2rem;
 }
 
+h3 {
+    font-size: 1.4rem;
+}
+
 .nav-links {
     list-style: none;
     display: flex;
@@ -30,6 +34,7 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: #fff;
+    font-size: 1.2rem;
     font-weight: 500;
     transition: color 0.3s ease;
 }
