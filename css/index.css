@@ -41,7 +41,6 @@ main {
     padding: 20px;
 }
 
-
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -65,8 +64,6 @@ main {
     border-radius: 8px;
 }
 
-
-
 section {
     margin-bottom: 30px;
 }
@@ -84,6 +81,12 @@ h2{
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 2em;
+}
+
+h4{
+    text-align: center;
+    font-size: 1.2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 p{
