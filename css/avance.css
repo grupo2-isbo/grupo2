@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -43,18 +44,25 @@ main {
 
 .avance {
     display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
+    justify-content: space-evenly;
 }
 
 img {
-    align-items: center;
-    margin: 0;
+    margin: auto;
     object-fit: fill;
-    max-width: 500px;
+    max-width: 600px;
     max-height: 300px;
     border-radius: 8px;
+    border: 1px solid #00ffb3; 
+    transition: transform 0.25s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
 }
 
 #avance1 {
@@ -63,9 +71,26 @@ img {
     height: auto;
 }
 
-
 section {
     margin-bottom: 30px;
+}
+
+section img {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+    border: none;
+    border-radius: 8px;
+}
+
+.imagenes {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 section h2 {
@@ -102,11 +127,14 @@ footer {
     padding: 15px;
 }
 
-
 a {
     color: #fff;
 }
 
 a:hover {
     color: darkgrey;
+}
+
+video{
+    border: 1px solid #45ffc7;
 }
