@@ -24,7 +24,6 @@ body {
     line-height: 1.6;
 }
 
-/* Encabezado */
 header {
     background-color: #262524;
     color: white;
@@ -39,6 +38,10 @@ nav {
     padding: 1rem 2rem;
 }
 
+h3 {
+    font-size: 1.4rem;
+}
+
 .nav-links {
     list-style: none;
     display: flex;
@@ -48,72 +51,44 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: #fff;
-    font-weight: 500;
     font-size: 1.2rem;
+    font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .nav-links a:hover{
     color: darkgray;
 }
+
 main {
     padding: 20px;
 }
 
-.avance {
+.card-container {
     display: flex;
-    gap: 15px;
     flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+    gap: 2rem;
+    justify-content: center;
 }
 
-div.avance{
-    margin:auto;
-    width: 70%;
+.card {
+    background-color: #262524;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 270px;
+
 }
 
-img {
-    margin: auto;
+.card img {
+    margin: 0;
     object-fit: fill;
-    max-width: 600px;
+    max-width: 270px;
     max-height: 300px;
     border-radius: 8px;
-    border: 1px solid #00ffb3; 
-    transition: transform 0.25s ease;
-}
-
-img:hover {
-    transform: scale(1.05);
-}
-
-#avance1 {
-    width: 460px;
-    flex-shrink: 0;
-    height: auto;
 }
 
 section {
     margin-bottom: 30px;
-}
-
-section img {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 20px;
-    border: none;
-    border-radius: 8px;
-}
-
-.imagenes {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
 }
 
 section h2 {
@@ -158,6 +133,32 @@ a:hover {
     color: darkgrey;
 }
 
+.div-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
+    gap: 2em;
+    justify-items: center;
+    align-items: center;
+    width: 95%;
+    margin: 0 auto;
+    justify-content: center;
+    align-content: space-around;
+}
+
+img{
+    max-width: 250px;
+    max-height: 300px;
+    gap: 2em;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
+}
+
 video{
-    border: 1px solid #45ffc7;
+    max-width: 250px;
+    max-height: 300px;
+    gap: 2em;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
 }

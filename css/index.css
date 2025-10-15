@@ -1,3 +1,21 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* ...tus otras reglas existentes... */
+}
+
+footer {
+    margin-top: auto;
+    /* ...tus otras reglas existentes... */
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -6,7 +24,6 @@ body {
     line-height: 1.6;
 }
 
-/* Encabezado */
 header {
     background-color: #262524;
     color: white;
@@ -42,6 +59,7 @@ h3 {
 .nav-links a:hover{
     color: darkgray;
 }
+
 main {
     padding: 20px;
 }
@@ -114,8 +132,6 @@ footer {
     text-align: center;
     padding: 15px;
 }
-
-
 
 a {
     color: #fff;
