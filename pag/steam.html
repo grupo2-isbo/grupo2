@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .markdown-content {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .markdown-content h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            color: var(--text-tertiary);
+        }
+
+        .markdown-content h2 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+            color: var(--text-tertiary);
+        }
+
+        .markdown-content p {
+            margin-bottom: 1em;
+        }
+
+        .markdown-content code {
+            background-color: var(--bg-tertiary);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+
+        .markdown-content pre {
+            background-color: var(--bg-tertiary);
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+
+        .markdown-content a {
+            color: var(--button-bg);
+            text-decoration: none;
+        }
+
+        .markdown-content a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            margin-bottom: 1em;
+            padding-left: 2em;
+        }
+
+        .markdown-content blockquote {
+            border-left: 4px solid var(--border-color);
+            padding-left: 1em;
+            margin: 1em 0;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="markdown-content">
+        <h1>Documentación Técnica</h1>
+        <p><em>Fecha: 12 de noviembre de 2025</em></p>
+        <p>Este documento contiene la documentación técnica para el proyecto STEAM del curso <strong>Laboratorio
+            STEAM+</strong> de la tecnicatura <strong>Redes y Software</strong> del <strong>Brazo Oriental</strong> de <strong>UTU</strong> año 2025.</p>
+        <h1>Proyecto: Silencio Activo</h1>
+        <h2>1. Integrantes</h2>
+        <ul>
+            <li>Nicolas Barboza</li>
+            <li>Guillermo Quevedo</li>
+            <li>Mathías Lucero</li>
+            <li>Fabricio Jordan</li>
+        </ul>
+        <h2>2. Descripción</h2>
+        <ul>
+            <li>Esto es un proyecto simple para poder resolver quizas un problema que es frecuente de una forma mas visual
+                 para el estudiante y para el profesor el cual este dando la calse.
+
+            </li>
+            <li>Intentamos resolver un problema muy comun en muchos centros educativos, el ruido, a traves de nuestro proyecto buscamos resolver Esto,
+                para que cada clase o cada hora de estudio sea aprovechada al maximo con las mejores calidades de ambiente posible (respetco al ruido) avisando con luces RGB Rojo para un mal ambiente, amarillo para algo que puede mejorar, y verde para un entorno perfecto de aprendizaje.
+            </li>
+        </ul>
+        <h2>3. Materiales</h2>
+        <ul>
+            <li>En primera instancia ncesitamos: - 2 micro:bit V1 (el cual seria el emisor) y micro:bit v2
+                -5 cables macho y 4 hembras 
+                -2 tarejtas de expancion (en nestro caso usamos solo 1 y una del kit IoT kit que funciona como una tarejta de expancion)
+                -1 protoboard para que el microbit recptor pueda emitir los colores correspondientes.
+                -3 recistencias
+                -1 luz RGB o en su defecto 4 luces las cuales sean de su color correspondinte (rojo, amarillo, verde) pero esto implica un cambio en el codigo ya que el nuestro esta realizado solamente con una luz RGB.
+                -un sensor de sonido, en nuestro caso utilizamos el Noise sensor del IoT Kit.
+            </li>
+        </ul>
+        <h2>4. Diseño Mecánico</h2>
+        <ul>
+            <li>El ensamblaje de nuestro poryecto es algo simple, practico y flexible, ya que una de las partes, (el receptor) esta conectado a la pc para tomar el sonido ambiente del aula, y luego medir el ruido, la otra parte estaria dentro de una caja
+                para protejer el sistema y con el RGB por fuera para mostrar en que nivel de ruido se encuentra el area. El receptor puede estar conectado a la pc como un USB en el dispositivo del profesor que es donde el esta dictando la clase. 
+
+            </li>
+            <li>[Incluir fotografías ilustrativas]</li>
+        </ul>
+        <h2>5. Diseño Electrónico</h2>
+        <ul>
+            <li>Se presenta el diagrama de conexión del proyecto silencio activo y se adjunta link al proyecto en la plataforma tinkercad utilizada para la creación del mismo: https://www.tinkercad.com/things/2TpczDFKz7i-fantastic-jaiks</li>
+            <li>1. Componentes principales.
+                Dos micro:bit 
+                Un noise sensor(para la captacion de sonido)
+                Tres resistencias(de 10kΩ)
+                Cable de conexion (rojo, amarillo, verde y negro (la cantidad esta documentada anteriormente))
+
+                2. Conexión. 
+                Tenemos el microbit con una placa de expansión y a una protoboard, en la cual se conecta 3 cables principales, rojo, verde, y amarillo, en los pines 1, 2 y 4, por otra parte tenemos un cable tierra conectado de micro:bit a la protoboard.
+
+                Por otra parte esta el led RGB capaz de cambiar de color dependiendo de la cantidad de audio recibido, con este estan las 3 resistencias este led tiene 4 conexiones, su conexion a tierra tiene un cable macho conectando a la misma protoboard.
+
+                En segundo lugar tenemos el segundo micro:bit, el cual esta adaptado con una placa de expansión de Iot:kit, en el cual esta conectado el noise sensor a la primera linea de pines numero 1.
+
+            </li>
+        </ul>
+        <h2>6. Diseño Software</h2>
+        <ul>
+            <li>[Realizar una descripción de como funciona la solución a nivel de software]</li>
+            <li>
+                <h4>Descripción del funcionamiento a nivel de software: </h4>
+            </li>
+            <p>Se utilizan dos micro:bit, uno de <strong>emisor</strong> y otro como <strong>receptor</strong>.</p>
+            <p>El sistema utiliza un módulo de radio para la interconexión entre los dos micro:bit.</p>
+            <p>El emisor, emitirá vía radio el ruido que se detecta desde el noise sensor.</p>
+            <p>Según el nivel de ruido recibido, se controlará el color LED a prender.</p>
+            <br>
+            <li>[Explicar los bloques de código más importantes de la solución programada]</li>
+            <br>
+
+            <li>Este es el codigo del <strong>Micro:bit emisor</strong>: 
+                <br>
+                <hr>
+                <pre>
+                from microbit import *
+                import radio
+                
+                def on_forever():
+                    ruido = Environment.read_noise(AnalogPin.P1)
+                    #serial.write_value("ruido", ruido)
+                
+                    radio.set_group(5)
+                    radio.send_value("ruido", ruido)
+                
+                    if ruido > 10:
+                        basic.show_string("W") # works
+                    else:
+                        basic.show_string("E") # error
+                
+                basic.forever(on_forever)
+                </pre>
+                <hr>
+                <br>
+            </li>
+            <li>
+                <p>Explicación de los bloques más importantes:</p>
+                <p>
+                    <pre>
+                        import radio
+                        ...
+                        ruido = Environment.read_noise(AnalogPin.P1)
+                    </pre>
+                    <p>
+                        Primero importamos el módulo radio.
+                        Luego recibimos el ruido desde el sensor a través del pin 01.
+                    </p>
+                </p>
+                <p>
+                    <pre>
+                        radio.set_group(5)
+                        radio.send_value("ruido", ruido)
+                    
+                        if ruido > 10:
+                            basic.show_string("W") # works
+                        else:
+                            basic.show_string("E") # error
+                    </pre>
+                    <p>
+                        Primero introducimos el grupo de radio por donde nos comunicaremos con el Micro:bit receptor.
+                        Luego enviamos el ruido a través del radio.
+                        Los últimas 4 líneas son para saber a través de la pantalla LED, si el sensor está funcionando o no. 
+                    </p>
+                </p>
+            </li>
+            <li>Este  es el codigo del <strong>Micro:bit receptor</strong>: 
+                <br>
+                <hr>
+                <pre>
+                from microbit import
+                import radio
+                
+                radio_group = 5
+                
+                def set_color(r, g, b): #set color in leds
+                    pins.analog_write_pin(AnalogPin.P1, r) # P1 is the pin number 1 of the microbit/arduino
+                    pins.analog_write_pin(AnalogPin.P2, g)
+                    pins.analog_write_pin(AnalogPin.P4, b)
+                
+                def sColor(color):
+                    if color == "Red":
+                        set_color(1023, 0, 0) # Red
+                    elif color == "Green":
+                        set_color(0, 1023, 0) # Green
+                    elif color == "Blue":
+                        set_color(0, 0, 1023) # Blue
+                    elif color == "White":
+                        set_color(1023, 1023, 1023) # White
+                    else:
+                        raise("Invalid Color.")
+                
+                def radioReceiver(name, ruido):
+                    if ruido <= 86:
+                        sColor("Green") # Green
+                        basic.show_string("G")
+                        print("G")
+                        basic.pause(300)
+                    elif ruido > 86 and ruido <= 171:
+                        sColor("Orange") # Orange, like in a traffic light
+                        print("O")
+                        basic.show_string("O")
+                        basic.pause(300)
+                    elif ruido > 171:
+                        sColor("Red") # Red
+                        print("R")
+                        basic.show_string("R")
+                        basic.pause(300)
+                    else:
+                        sColor("White") # White
+                        print("W")
+                        basic.show_string("W")
+                        basic.pause(300)
+                
+                def on_forever():
+                    radio.set_group(radio_group)
+                    radio.on_received_value(radioReceiver)
+                
+                basic.forever(on_forever)
+                </pre>
+                <hr>
+                <br>
+            </li>
+            <li>
+                <p>Explicación de los bloques más importantes:</p>
+                <p>
+                    <pre>
+                        def set_color(r, g, b): # set color in leds
+                            pins.analog_write_pin(AnalogPin.P1, r) # P1 is the pin number 1 of the microbit/arduino
+                            pins.analog_write_pin(AnalogPin.P2, g)
+                            pins.analog_write_pin(AnalogPin.P4, b)
+                    </pre>
+                    <p>
+                        Esta función es utilizada para colocar los colores en los LEDs RGB.
+                    </p>
+                </p>
+                <p>
+                    <pre>
+                        def sColor(color):
+                            if color == "Red":
+                                set_color(1023, 0, 0) # Red
+                            elif color == "Green":
+                                set_color(0, 1023, 0) # Green
+                            elif color == "Blue":
+                                set_color(0, 0, 1023) # Blue
+                            elif color == "White":
+                                set_color(1023, 1023, 1023) # White
+                            else:
+                                raise("Invalid Color.")
+                    </pre>
+                    <p>
+                        Esta función define los códigos RGB que se usarán.
+                    </p>
+                </p>
+                <p>
+                    <pre>
+                        def radioReceiver(name, ruido):
+                            if ruido <= 86:
+                                sColor("Green") # Green
+                                basic.show_string("G")
+                                print("G")
+                                basic.pause(300)
+                            elif ruido > 86 and ruido <= 171:
+                                ...
+                            elif ruido > 171:
+                                ...
+                    </pre>
+                    <p>
+                        La función "radioReceiver" define que color debe encenderse a distintos niveles de ruido.
+                    </p>
+                </p>
+            </li>
+            <li>Sugerencia: si se copia el en Visual Studio</li>
+        </ul>
+        <h2>7. Referencias y recursos</h2>
+        <p>https://www.digikey.com/es/resources/conversion-calculators/conversion-calculator-resistor-color-code</p>
+
+    </div>
+</body>
+
+</html>
