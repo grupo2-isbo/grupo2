@@ -13,8 +13,8 @@ def sColor(color):
         set_color(1023, 0, 0) # Red
     elif color == "Green":
         set_color(0, 1023, 0) # Green
-    elif color == "Blue":
-        set_color(0, 0, 1023) # Blue
+    elif color == "Orange":
+        set_color(1023, 466, 0) # Orange
     elif color == "White":
         set_color(1023, 1023, 1023) # White
     else:
