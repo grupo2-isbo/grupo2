@@ -86,11 +86,10 @@
     </header>
     <div class="markdown-content">
         <h1>Documentación Técnica</h1>
-        <p><em>Fecha: XX de noviembre de 2025</em></p>
+        <p><em>Fecha: 11 de noviembre de 2025</em></p>
         <p>Este documento contiene la documentación técnica para el proyecto STEAM del curso <strong>Laboratorio
-            STEAM+</strong> de la tecnicatura <strong>Redes y Software</strong> del [<strong>nombre del
-            instituto</strong>] de <strong>UTU</strong> año 2025.</p>
-        <h1>Proyecto: [Nombre del proyecto]</h1>
+            STEAM+</strong> de la tecnicatura <strong>Redes y Software</strong> del <strong>ISBO</strong> de <strong>UTU</strong> año 2025.</p>
+        <h1>Proyecto: Silencio Activo</h1>
         <h2>1. Integrantes</h2>
         <ul>
             <li>Guillermo Quevedo</li>
@@ -145,26 +144,245 @@
             </tr>
           </table>
         <h2>4. Diseño Mecánico</h2>
-        <ul>
-            <li>Nuestro proyecto su parte mecanica seria basicamente donde lo colocariamos caja por ejemplo y donde se colocaria, donde se conectaria si a un encufe necesitaria un transformador por ejemplo etc etc.</li>
-            <li>[¿Cómo se arma la solución? Incluir instrucciones de ensamblaje]</li>
-            <li>[Incluir fotografías ilustrativas]</li>
-        </ul>
+<ul>
+    <li>Nuestro proyecto, su parte mecánica, consiste básicamente en dónde se colocaría (por ejemplo, en una caja) y cómo se conectaría, si necesitaría un transformador, etc.</li>
+    <li>Instrucciones de ensamblaje:
+        <ol>
+            <li>Colocar cada Micro:bit en la tarjeta de expansión del kit IoT:bit.</li>
+            <li>Conectar el sensor de sonido al Micro:bit usando los pines correspondientes (VCC, GND y señal en P0).</li>
+            <li>Conectar el LED RGB a la placa mediante una resistencia de 220 Ω para protegerlo, asegurando que los pines de control se conecten correctamente al Micro:bit.</li>
+            <li>El Micro:bit con sensor de sonido lo colocamos en una caja o soporte para mantenerlos fijos, asegurando que el sensor de sonido esté orientado hacia el aula</li>
+            <li>El Micro:bit con protoboard deberá estar conectado a la computadora, y el otro Micro:bit con sensor de sonido a batería; asegurarse de que las baterías estén cargadas y colocadas correctamente.</li>
+            <li>Probar todas las conexiones, verificando que el LED RGB y el sensor funcionen correctamente.</li>
+        </ol>
+    </li>
+    <img src="../img/microbit-box.jpeg" alt="">
+</ul>
         <h2>5. Diseño Electrónico</h2>
         <ul>
             <li>En esta explicacion realizada en Tinkercad se ve como se realizaron las conecciones de cableados en los microbits sensores etc. </li>
-            <li>[Incluir diagramas de Tinkercad mostrando los componentes electrónicos y como van conectados]</li>
+            <img src="../img/Fantastic Jaiks.png" alt="Esquema Tinkercad">
         </ul>
         <h2>6. Diseño Software</h2>
         <ul>
-            <li>[Realizar una descripción de como funciona la solución a nivel de software]</li>
-            <li>[Explicar los bloques de código más importantes de la solución programada]</li>
-            <li>[Incluir código fuente de python (u otro lenguaje)]</li>
-            <li>Sugerencia: si se copia el en Visual Studio</li>
+            <li>Descripción de cómo funciona la solución a nivel de software:</li>
+            <ol>
+                <li>El Micro:bit con el sensor de sonido lee de manera continua el nivel de sonido del aula y es enviada esa informacion al microbit conectado a la computadora.</li>
+                <li>Cada Micro:bit lee de manera continua el nivel de sonido del aula a través del sensor.</li>
+                <li>Los Micro:bit pueden comunicarse entre sí mediante radio para sincronizar la alerta de ruido en varias ubicaciones del aula.</li>
+            </ol>
+            <li>Bloques de código más importantes:</li>
+            <ol>
+                <li>Lectura del sensor de sonido: Captura el nivel de ruido y lo compara con un umbral predefinido.</li>
+                <li>Control del LED RGB: Dependiendo del nivel de ruido, cambia el color del LED (por ejemplo, verde = bajo, amarillo = moderado, rojo = alto).</li>
+                <li>Comunicación por radio: Envía el estado de ruido a otros Micro:bit para mantener la alerta sincronizada.</li>
+            </ol>
+            <li>Código fuente ejemplo en Python (MicroPython para Micro:bit):</li>
+            <ol>
+                <li>Microbit Emisor: 
+                </li>
+                <pre><code>
+from microbit import *
+import radio
+
+def on_forever():
+    ruido = Environment.read_noise(AnalogPin.P1)
+    #serial.write_value("ruido", ruido)
+
+    radio.set_group(5)
+    radio.send_value("ruido", ruido)
+
+    if ruido > 10:
+        basic.show_string("W") # works
+    else:
+        basic.show_string("E") # error
+
+basic.forever(on_forever)
+                </code></pre>
+                <li>Micro Receptor:</li>
+                <pre><code>
+from microbit import
+import radio
+
+radio_group = 5
+
+def set_color(r, g, b): #set color in leds
+    pins.analog_write_pin(AnalogPin.P1, r) # P1 is the pin number 1 of the microbit/arduino
+    pins.analog_write_pin(AnalogPin.P2, g)
+    pins.analog_write_pin(AnalogPin.P4, b)
+
+def sColor(color):
+    if color == "Red":
+        set_color(1023, 0, 0) # Red
+    elif color == "Green":
+        set_color(0, 1023, 0) # Green
+    elif color == "Orange":
+        set_color(1023, 466, 0) # Orange
+    elif color == "White":
+        set_color(1023, 1023, 1023) # White
+    else:
+        raise("Invalid Color.")
+
+def radioReceiver(name, ruido):
+    if ruido <= 86:
+        sColor("Green") # Green
+        basic.show_string("G")
+        print("G")
+        basic.pause(300)
+    elif ruido > 86 and ruido <= 171:
+        sColor("Orange") # Orange, like in a traffic light
+        print("O")
+        basic.show_string("O")
+        basic.pause(300)
+    elif ruido > 171:
+        sColor("Red") # Red
+        print("R")
+        basic.show_string("R")
+        basic.pause(300)
+    else:
+        sColor("White") # White
+        print("W")
+        basic.show_string("W")
+        basic.pause(300)
+
+def on_forever():
+    radio.set_group(radio_group)
+    radio.on_received_value(radioReceiver)
+
+basic.forever(on_forever)
+                </code></pre>
+                <li>Serial Reader</li>
+                <pre><code>
+import time as t
+from datetime import datetime
+import serial
+import serial.tools.list_ports as list_ports
+import subprocess
+import sys
+import os
+
+def openWebsite():
+    html_path = os.path.abspath('./microbit.html')
+    
+    if sys.platform.startswith('linux'):
+        subprocess.run(['sudo', '-u', os.getenv('SUDO_USER', 'fabrizio'),
+                        'xdg-open', html_path])
+    elif sys.platform.startswith('win'):
+        pass
+        subprocess.run(['start', html_path], shell=True)
+    elif sys.platform.startswith('darwin'):
+        pass
+        subprocess.run(['open', html_path])
+    else:
+        print("Sistema operativo no reconocido.")
+
+
+PID_MICROBIT = 516
+VID_MICROBIT = 3368
+TIMEOUT = 0.1
+
+def find_comport(pid, vid, baud):
+    ser_port = serial.Serial(timeout=TIMEOUT)
+    ser_port.baudrate = baud
+    ports = list(list_ports.comports())
+    for p in ports:
+        try:
+            if (p.pid == pid) and (p.vid == vid):
+                ser_port.port = str(p.device)
+                return ser_port
+        except AttributeError:
+            continue
+    return None
+
+
+def main():
+    print('Buscando micro:bit...')
+    ser_micro = find_comport(PID_MICROBIT, VID_MICROBIT, 115200)
+    if not ser_micro:
+        print('micro:bit no encontrado')
+        return
+    else:
+        print("micro:bit encontrado. Abriendo servicio web...")
+        openWebsite()
+
+
+    ser_micro.open()
+    oldLines = []
+    line = ""
+
+    while True:
+        t.sleep(1.4)
+        nline = ser_micro.readline().decode('utf-8').strip()
+        if nline=="G":
+            line = "🟩"
+        elif nline == "R":
+            line = "🟥"
+        elif nline == "O":
+            line = "🟨"
+        else:
+            line = "⬜"
+
+        line += datetime.now().strftime(" %Y-%m-%d %H:%M:%S")
+
+        print(nline)
+        #oldLines += "<p>" + line + "\n </p>"
+
+        if not line:
+            continue
+        if line == 'EXIT':
+            break
+
+        #
+        print(line)
+
+
+        oldLines.append(f"<p>{line}</p>")
+
+        if len(oldLines) > 10:
+            oldLines.pop(0)
+        
+        # Crea un HTML nuevo en cada lectura
+        with open('microbit.html', 'w') as f:
+            f.write(f"""
+            <!--
+                </pre></code><html>
+                <head>
+                    <title>Micro:bit</title>
+                    <meta http-equiv="refresh" content="1">
+                </head>
+                <body>
+                    
+                    <h2>Último valor recibido:</h2>
+                    <strong style="color: green;">{line}</strong>
+                    <h3>Ultimos 10 valores recibidos:</h3>
+                    <div style="color: red;">
+                    {''.join(oldLines)}
+                    </div>
+                </body>
+            </html>
+            """)-->
+
+
+    ser_micro.close()
+    print("EXIT from program")
+    sys.exit(0)
+
+
+
+
+
+if __name__ == "__main__":
+    main()
+
+                </pre></code>
+            </ol>
         </ul>
         <h2>7. Referencias y recursos</h2>
-        <p>[Listar referencias, fuentes, recursos, etc usados durante el desarrollo del proyecto]</p>
-
+        <ul>
+            <li>Micro:bit Educational Foundation: <a href="https://microbit.org" target="_blank">microbit</a></li>
+            <li>Kit IoT:bit Manual de usuario.</li>
+            <li>Documentación oficial Tinkercad: <a href="https://www.tinkercad.com" target="_blank">Tinkercad</a></li>
+        </ul>
     </div>
     <footer>
         <p>&copy Todos los derechos reservados de Peñarol Inteligencia</p> <a id="github" href="https://github.com/grupo2-isbo/grupo2.github.io" target="_blank">
